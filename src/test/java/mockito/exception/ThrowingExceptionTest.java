@@ -10,9 +10,6 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import static org.mockito.Mockito.*;
 
-/**
- * Created by pan on 16/3/8.
- */
 @RunWith(MockitoJUnitRunner.class)
 public class ThrowingExceptionTest {
 
@@ -34,7 +31,7 @@ public class ThrowingExceptionTest {
     }
 
     /**
-     * 当测试 没有 返回值的方法时，可用下面的模式测试其抛出异常。
+     * 当测试 没有 返回值类型为void的方法时，可用下面的模式测试其抛出异常。
      *
      * @throws Exception
      */
