@@ -10,9 +10,9 @@ import java.util.Map;
 import com.packt.trading.dto.Stock;
 
 /**
- * Portfolio : n. 公文包；文件夹；证券投资组合；部长职务
+ * Portfolio : n. 公文包；文件夹；证券投资组合；（政府高官的）职务
  */
-public final class Portfolio {
+public class Portfolio {
     private Map<String, List<Stock>> stockMap = new HashMap<String, List<Stock>>();
 
     public void buy(Stock stock) {
@@ -43,7 +43,7 @@ public final class Portfolio {
 
     /**
      * 获取当前持有的某个股票的均价
-     * @param stock
+     * @param stock 要查询的股票
      * @return
      */
     public BigDecimal getAvgPrice(Stock stock) {
@@ -62,8 +62,7 @@ public final class Portfolio {
 
 
     /**
-     * 获取当前持有的股票的总价值。
-     * @return
+     * @return 当前持有的股票的总价值
      */
     public BigDecimal getCurrentValue() {
         BigDecimal avgPrice = BigDecimal.ZERO;
