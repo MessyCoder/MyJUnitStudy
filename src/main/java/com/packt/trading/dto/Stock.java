@@ -6,14 +6,18 @@ import java.math.BigDecimal;
  * Stock ： 股票
  */
 public class Stock {
-    private final String symbol;
-    private final String name;
+    private String symbol;
+    private String name;
     private BigDecimal price;
 
-    public Stock(String id, String name, BigDecimal price) {
-        this.symbol = id;
+    public Stock(String symbol, String name, BigDecimal price) {
+        this.symbol = symbol;
         this.name = name;
         this.price = price;
+    }
+
+    public Stock(){
+        System.out.println("Stock constructor no parameters");
     }
 
     public String getSymbol() {

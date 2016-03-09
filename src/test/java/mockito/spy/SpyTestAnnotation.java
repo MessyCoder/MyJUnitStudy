@@ -2,12 +2,14 @@ package mockito.spy;
 
 import com.packt.trading.dto.Stock;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Spy;
+import org.mockito.runners.MockitoJUnitRunner;
 
 import java.math.BigDecimal;
 
-
-import static org.mockito.Mockito.*;
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
 
 
 /**
@@ -16,17 +18,31 @@ import static org.junit.Assert.*;
  * spy用于修改那些难以测试的方法。而不至于将整个对象都mock掉。
  * 也称作部分Mock。但是设计良好的代码，或者测试驱动的代码不应该使用spy进行测试。
  *
- * 重要：spy只作用于对象的当前范围，不可以spy父类方法。如果被测试方法中使用super.xxx来调用父类的方法，
- * 那么无法通过spy【xxx】方法（甚至基本的继承）来改变xxx的行为。
+ * spy多用于老旧的难以测试的情况下。
  */
-public class SpyTest {
+
+@RunWith(MockitoJUnitRunner.class)
+public class SpyTestAnnotation {
+
+    /**
+     * Mockito在运行时，如果检测到@Spy标记在非null的成员变量身上，则以当前的值进行spy，否则将调用
+     * 对应类型的无参构造函数进行构造，然后再spy。
+     */
+    @Spy
+    Stock spyStock = new Stock("A", "Company A", BigDecimal.ONE);
+
+    @Spy
+    Stock fooStock;
+
     @Test
     public void spying() throws Exception {
-        //这是真实的对象。
-        Stock realStock = new Stock("A", "Company A", BigDecimal.ONE);
+        assertNotNull(fooStock);
+        assertNull(fooStock.getName());
+
+
 
         //这是被【spy：侦察】的对象。
-        Stock spyStock = spy(realStock);
+
         assertEquals("A", spyStock.getSymbol());
 
         //spy可以调用真实的方法，并且产生实际的效果

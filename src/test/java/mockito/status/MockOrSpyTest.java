@@ -2,7 +2,6 @@ package mockito.status;
 
 import com.packt.trading.Portfolio;
 import com.packt.trading.dto.Stock;
-import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
 
