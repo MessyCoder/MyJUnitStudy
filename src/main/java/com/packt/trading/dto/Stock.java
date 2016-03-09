@@ -25,6 +25,7 @@ public class Stock {
     }
 
     public BigDecimal getPrice() {
+        System.out.println("getPrice");
         return price;
     }
 

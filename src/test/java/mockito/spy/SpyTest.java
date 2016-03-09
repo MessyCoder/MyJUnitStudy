@@ -32,12 +32,29 @@ public class SpyTest {
         spyStock.updatePrice(BigDecimal.ZERO);
         assertEquals(BigDecimal.ZERO, spyStock.getPrice());
 
-        //同时spy对象还可以设定对象的返回值，设定之后，原方法不再被执行。
-        //但是此处的when(spyStock.getPrice())仍旧会调用原方法！！
+        /**
+         * 同时spy对象还可以设定对象的返回值，设定之后，原方法不再被执行。
+         *
+         * 但是此处的when(spyStock.getPrice())仍旧会调用原方法！！
+         * 这是syp的一种副作用，不过，使用do-when模式可以避免该问题。（查看void_method包了解如何操作）
+         * 所以：当使用spy的时候，尽量不要使用when-then模式。
+         *
+         */
         when(spyStock.getPrice()).thenReturn(BigDecimal.TEN);
+        /**
+         * verify仍然认为上面when方法中没有调用getPrice方法。所以这里times里面只能写“1”
+         * 实际上，如果为debug一下getPrice的话，确实有两次调用。
+         */
+        verify(spyStock, times(1)).getPrice();
+
+
         spyStock.updatePrice(new BigDecimal("7"));
-        //设置方法返回10之后便不再受到他人影响。
+
+        //设置方法返回10之后原方法不再执行。
         assertNotEquals(new BigDecimal("7"), spyStock.getPrice());
         assertEquals(BigDecimal.TEN, spyStock.getPrice());
     }
+
+
+
 }

@@ -33,6 +33,8 @@ public class ThrowingExceptionTest {
     /**
      * 当测试 没有 返回值类型为void的方法时，可用下面的模式测试其抛出异常。
      *
+     * 专门有一节介绍如何处理void返回值的方法的课程。在void_method包下。
+     *
      * @throws Exception
      */
     @Test(expected = IllegalStateException.class)
