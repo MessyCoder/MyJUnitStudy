@@ -1,4 +1,4 @@
-package mockito.exception;
+package mockito.throwing_exception;
 
 import com.packt.trading.MarketWatcher;
 import com.packt.trading.Portfolio;

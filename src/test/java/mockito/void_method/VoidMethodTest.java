@@ -64,6 +64,9 @@ public class VoidMethodTest {
         /**
          * 不这么写的话get(0)会导致跨界异常。
          * when里面写的是spy或者mock对象，不可以是真实对象！
+         *
+         * 此外，do-when中的when方法和when-then中的when方法不是同一个。
+         * 在when-then中无法像下面那样使用。
          */
         doReturn("faked data").when(spy).get(0);
         assertEquals("faked data", spy.get(0));

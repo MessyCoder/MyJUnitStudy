@@ -1,4 +1,4 @@
-package mockito.mockito_setups;
+package mockito.basics;
 
 import com.packt.trading.MarketWatcher;
 import com.packt.trading.Portfolio;

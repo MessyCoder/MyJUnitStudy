@@ -35,7 +35,7 @@ public class AnswerTest {
         stockMap = new HashMap<String, List<Stock>>();
     }
     /**
-     * 利用Answer借口方法可以设置调用某个Mock方法时触发某些逻辑，以及动态设置返回值。
+     * 利用Answer接口可以设置调用某个Mock方法时触发某些逻辑，以及动态设置返回值。
      */
     @Test
     public void testDoAnswer(){
@@ -52,6 +52,9 @@ public class AnswerTest {
     class BuyAnswer implements Answer<Object> {
 
         public Object answer(InvocationOnMock invocation) throws Throwable {
+            /**
+             * 通过invocation对象可以获知方法调用时参数。
+             */
             Stock newStock = (Stock)invocation.getArguments()[0];
             List<Stock> stocks = stockMap.get(newStock.getSymbol());
             if(stocks != null) {

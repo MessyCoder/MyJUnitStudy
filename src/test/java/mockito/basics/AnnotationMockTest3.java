@@ -1,28 +1,28 @@
-package mockito.mockito_setups;
+package mockito.basics;
 
 import com.packt.trading.MarketWatcher;
 import com.packt.trading.Portfolio;
-import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import org.mockito.runners.MockitoJUnitRunner;
 
 import static org.junit.Assert.assertNotNull;
 
 /**
- * 在构造方法中对Mock对象进行初始化。
+ * 使用MockitoJUnitRunner运行单体测试
+ * 也可以对Mock对象进行初始化。这是最经典的用法。
+ *
+ * Mockito不可以对终态类， 匿名类，以及原生数据类进行Mock
  */
-public class AnnotationMockTest1 {
+
+@RunWith(MockitoJUnitRunner.class)
+public class AnnotationMockTest3 {
     @Mock
     MarketWatcher marketWatcher;
-    
+
     @Mock
     Portfolio portfolio;
-
-    public AnnotationMockTest1(){
-        MockitoAnnotations.initMocks(this);
-    }
 
     @Test
     public void sanity() throws Exception {

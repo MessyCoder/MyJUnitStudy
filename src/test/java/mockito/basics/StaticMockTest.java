@@ -1,8 +1,7 @@
-package mockito.mockito_setups;
+package mockito.basics;
 
 import com.packt.trading.MarketWatcher;
 import com.packt.trading.Portfolio;
-import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
 
