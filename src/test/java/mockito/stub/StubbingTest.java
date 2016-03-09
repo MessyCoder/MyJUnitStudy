@@ -10,6 +10,7 @@ import com.packt.trading.dto.Stock;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
+import org.mockito.exceptions.verification.NoInteractionsWanted;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import java.math.BigDecimal;
@@ -21,6 +22,7 @@ import static org.junit.Assert.assertNull;
 //Mockito继承自Matchers 所以直接导入Mockito就可以了。
 //import static org.mockito.Matchers.anyString;
 //import static org.mockito.Matchers.isA;
+import static org.junit.Assert.fail;
 import static org.mockito.Mockito.*;
 
 /**
@@ -104,20 +106,26 @@ public class StubbingTest {
         //验证村从来没有调用过这些对象上的方法。
         verifyZeroInteractions(marketWatcher, portfolio);
     }
+
     @Test
     public void verify_no_more_interaction(){
-        Stock noStock = null;
         portfolio.getAvgPrice(null);
         portfolio.sell(null, 0);
 
         //验证：getAvgPrice被调用了一次
         verify(portfolio).getAvgPrice(null);
 
-        /**
-         * 验证：除去已经验证过的方法调用之外，没有其他方法被调用。
-         *
-         * 由于sell方法也被调用，因此该验证失败。
-         */
-        verifyNoMoreInteractions(portfolio);
+        try {
+            /**
+             * 验证：除去已经验证过的方法调用之外，没有其他方法被调用。
+             *
+             * 由于sell方法也被调用，因此该验证失败，异常抛出
+             */
+            verifyNoMoreInteractions(portfolio);
+            fail();
+        }catch (NoInteractionsWanted ignore){
+
+        }
+
     }
 }

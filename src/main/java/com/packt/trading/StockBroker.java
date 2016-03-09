@@ -11,6 +11,7 @@ public class StockBroker {
     private final static BigDecimal LIMIT = new BigDecimal("0.10");
     private final MarketWatcher market;
     public StockBroker(MarketWatcher market) {
+        System.out.println("StockBroker");
         this.market = market;
     }
     public void perform(Portfolio portfolio,Stock stock) {

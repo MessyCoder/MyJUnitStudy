@@ -8,6 +8,7 @@ import org.junit.Test;
 import org.mockito.InOrder;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.mockito.exceptions.verification.VerificationInOrderFailure;
 
 import static org.mockito.Mockito.*;
 import static org.junit.Assert.*;
@@ -41,7 +42,13 @@ public class InOrderTest {
          * 所以该测试失败。
          */
         inOrder.verify(portfolio, times(1)).buy(isA(Stock.class));
-        inOrder.verify(portfolio).getAvgPrice(isA(Stock.class));
+        try {
+            inOrder.verify(portfolio).getAvgPrice(isA(Stock.class));
+            fail();
+        }catch (VerificationInOrderFailure ignore){
+
+        }
+
     }
 
     @Test

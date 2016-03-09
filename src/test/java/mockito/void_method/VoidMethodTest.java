@@ -5,6 +5,7 @@ import com.packt.trading.Portfolio;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
+import org.mockito.exceptions.misusing.UnfinishedStubbingException;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import java.math.BigDecimal;
@@ -43,13 +44,18 @@ public class VoidMethodTest {
         //该方法运行没有问题
         portfolio.getCurrentValue();
 
-        /**
-         * 使用doReturn方法却可以设置一个其他类型的返回值，当然这会导致单元测试失败。
-         */
-        doReturn("See returning a String").when(portfolio.getCurrentValue());
 
-        //而这行代码将失败。
-        portfolio.getCurrentValue();
+
+
+        try {
+            /**
+             * doReturn方法不是类型安全，它完全可以设置一个其他类型的返回值.
+             * 运行时就会报错。
+             */
+            doReturn("See returning a String").when(portfolio.getCurrentValue());
+        }catch (UnfinishedStubbingException ignore){
+
+        }
     }
 
 

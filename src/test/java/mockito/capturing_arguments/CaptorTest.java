@@ -20,7 +20,7 @@ import static org.junit.Assert.*;
  * Created by pan on 16/3/9.
  */
 @RunWith(MockitoJUnitRunner.class)
-public class CapturingArgumentsTest {
+public class CaptorTest {
 
     @Mock
     MarketWatcher marketWatcher;

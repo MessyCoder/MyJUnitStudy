@@ -15,6 +15,10 @@ import com.packt.trading.dto.Stock;
 public class Portfolio {
     private Map<String, List<Stock>> stockMap = new HashMap<String, List<Stock>>();
 
+    public Portfolio() {
+        System.out.println("Portfolio");
+    }
+
     public void buy(Stock stock) {
         List<Stock> stocks = stockMap.get(stock.getSymbol());
         if(stocks != null) {
