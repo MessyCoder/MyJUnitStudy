@@ -35,6 +35,10 @@ public class StubbingTest {
 
     @Mock
     MarketWatcher marketWatcher;
+
+    /**
+     * ！！当一个对象被Mock的时候，它的构造方法甚至都不会被调用！！
+     */
     @Mock
     Portfolio portfolio;
 
@@ -59,7 +63,7 @@ public class StubbingTest {
     @Test
     public void when_ten_percent_gain_then_the_stock_is_sold() {
         StockBroker broker = new StockBroker(marketWatcher);
-        /*
+        /**
          * 假设目前持有的某个股票的平均价格是10美刀。
          *
          * any方法的意思是 ： 当传入任何一个对象时。该方法只是为了解决类型转换的麻烦而存在。
